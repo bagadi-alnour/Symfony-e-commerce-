@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+<div class="jumbotron text-center">
+    <div class="display">
+      <div class="container">
+        {{form_start(form)}}
+        <div class="row lead">
+            <div class="col-11 col-md-11 col-sm-11 xm-11">
+                {{ form_row(form.keyWord) }}
+            </div>
+            <div class="col-1 col-md-1 col-sm-1 xm-1">
+            <div>
+                <button class="btn btn-outline-success d-inline-block float-right">   Search</button>
+            </div>
+            </div>
+        </div>
+        {{form_end(form)}}
+      </div>
+    </div>
+    <div class="container">
+       <div class="row mt-1">
+                <div class="col-4">
+                    <select class="form-control form-control-md">
+                        <option value="sortByPrice">Sort By price</option>
+                        <option value="" >select product by category</option>
+                    </select>
+                </div>
+                 <div class="col-4">
+                    <select class="form-control form-control-md">
+                        <option value="">select product by category</option>
+                        <option value="" >select product by category</option>
+                    </select>
+                </div>
+                 <div class="col-4">
+                    <select class="form-control form-control-md">
+                        <option  value="">select product by category</option>
+                        <option  value="">select product by category</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- products start here  -->
+<div class="container text-center mt-3 h6">
+    <div class="row">
+        {% for product in products %}
+        <a class="text-dark" href="{{ path('product_show', {'id': product.id}) }}">
+        <div class="col-lg-3 col-md-3 col-sm-6 xm-12 mb-4">
+            <div class="card">
+            
+                <div class="card-body">
+                    {% if product.filename %}
+                        <img class="img-fluid" src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="card-img-top" >
+                     <p class="card-title btn p-0 "> {{ product.name }}</p>
+                     <hr class="h6">
+                    <p class=" text-right h6 btn p-0 ">{{ product.price }}€</p>
+                    {% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <div class="navigation">
+            {{ knp_pagination_render(products) }}
+        </div>
+    </div>
+{% endblock %}
+    
+       

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title>
+                {% block title %}Welcome!{% endblock %}
+            </title>
+            {% block stylesheets %}{% endblock %}
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+                <link rel="stylesheet" href="{{ asset('build/app.css') }}"></head>
+                <body>
+                    <nav class="navbar navbar-expand-lg navbar-secondary bg-dark p-2" id="nav">
+                        <a class="navbar-brand text-white" href="{{ path('about') }}">A <span class="text-success z h4">Z</span> rica</a>
+                        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto ">
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="{{ path('home')}}">Home
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{path('about') }}">
+                                        <A:link>about</A:link>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{ path('contact_new')}}">
+                                        <A:link>Contact</A:link>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                                        Dropdown
+                                    </a>
+                                    <div aria-labelledby="navbarDropdown" class="dropdown-menu bg-dark">
+                                        <a class="dropdown-item text-white" href="#">Action</a>
+                                        <a class="dropdown-item text-white" href="#">Another action</a>
+                                        <div class="dropdown-divider text-white"></div>
+                                        <a class="dropdown-item text-white" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        {% if app.user.username is defined %}
+                            <a class="text-white cart img-fluid" href="{{ path('my_account') }}"><img src="{{ asset('images/products/shopping-cart.png') }}" alt="Cart"></a>
+                        <div class="nav-item dropdown">
+                                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                                    {{app.user.lastname}}
+                                </a>
+                                <div aria-labelledby="navbarDropdown" class="dropdown-menu bg-dark mr-5 text-left">
+                                   <p>
+                                    <a class="text-center m-2 text-white" href="{{ path('logout')}}">Sign out</a><br>
+                                   </p>
+                                   <p>
+                                    <a class="text-center m-2 text-white" href="{{ path('my_account') }}">your account</a>
+                                   </p>
+                                </div>
+                            </div>
+                            
+                        {% endif %}
+                        {% if app.user.username is not defined %}
+                            <div class="nav-item dropdown">
+                                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                                
+                                     Account
+                                
+                                </a>
+                                <div aria-labelledby="navbarDropdown" class="dropdown-menu bg-white">
+                                    <a class='dropdown-item' href="{{ path('app_register')}}">Sign up</a>
+                                    <a class='dropdown-item' href="{{ path('app_login')}}">Sign in</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </nav>
+                    {% block body %}
+                    {% endblock %}
+                    {% block javascripts %}{% endblock %}
+                    <script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                    <script crossorigin="anonymous" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+                    <script crossorigin="anonymous" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+                </body>
+            </html>
+        

@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+    <div class="container">
+        {{ form_widget(form) }}
+        <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
+            <a class="btn btn-outline-success float-right d-inline" href="{{ path('home') }}">Go back</a>
+
+    </div>
+{{ form_end(form) }}

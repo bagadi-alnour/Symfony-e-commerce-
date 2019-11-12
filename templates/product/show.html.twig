@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+         <h1>{{product.name}}</h1>
+    </div>
+
+    {% if product.filename %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <img class="img-fluid" src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="card-img-top" >
+            </div>
+            <div class="col-6"></div>
+                <p>Description:  {{ product.description }}</p>
+                <p>Category: {{ product.category }}</p>
+                <p class="h3"> price{{ product.country }}</p>
+                <hr>
+                <p>
+                <a class="btn btn-outline-success" href="{{ path('home') }}">Go back</a>
+                </p>
+            </div>
+        </div>    
+    </div>
+    {% endif %}
+{% endblock %}
